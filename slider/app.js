@@ -6,15 +6,25 @@ let position = 0;
 let dotIndex = 0;
 
 const nextSlide = () => {
-   if (position < (dots.length - 1) * 500) {
-      position += 500;
-      dotIndex++;
-   } else {
-      position = 0;
-      dotIndex = 0;
-   }
-   activeDot(dotIndex)
-   sliderLine.style.left = -position + 'px';
+   let pos = 0;
+   let animation = setInterval(function () {
+      pos += 10;
+      if (pos >= 500) {
+         clearInterval(animation);
+         return;
+      }
+      activeDot(dotIndex);
+      sliderLine.style.left = -pos + 'px';
+   }, 10)
+   // if (position < (dots.length - 1) * 500) {
+   //    position += 500;
+   //    dotIndex++;
+   // } else {
+   //    position = 0;
+   //    dotIndex = 0;
+   // }
+   // activeDot(dotIndex);
+   // sliderLine.style.left = -position + 'px';
 }
 
 const prevSlide = () => {
